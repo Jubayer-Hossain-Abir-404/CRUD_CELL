@@ -91,5 +91,11 @@ namespace CRUD_CELL
             textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells["Site"].Value.ToString();
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            rdlc_report RDLC = new rdlc_report();
+            RDLC.ShowDialog();
+        }
     }
 }
