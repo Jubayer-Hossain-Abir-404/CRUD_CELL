@@ -13,12 +13,13 @@ namespace CRUD_CELL
 {
     public partial class Form1 : Form
     {
+        string ID_Number="";
         public Form1()
         {
             InitializeComponent();
             BindData();
         }
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Lenovo\Documents\CRUD_1.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Lenovo\Documents\identity_table1.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -28,7 +29,7 @@ namespace CRUD_CELL
         private void button1_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand command = new SqlCommand("INSERT INTO CRUD_Table1 values ('" + int.Parse(textBox1.Text) + "', '" + textBox2.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "')", con);
+            SqlCommand command = new SqlCommand("INSERT INTO CRUD_Table3 (  Username, Password, Site) values ( '" + textBox2.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "')", con);
             command.ExecuteNonQuery();
             MessageBox.Show("Success");
             con.Close();
@@ -37,7 +38,7 @@ namespace CRUD_CELL
 
         void BindData()
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM CRUD_Table1", con);
+            SqlCommand command = new SqlCommand("SELECT * FROM CRUD_Table3", con);
             SqlDataAdapter sd = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             sd.Fill(dt);
@@ -52,7 +53,7 @@ namespace CRUD_CELL
         private void button2_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand command = new SqlCommand("UPDATE CRUD_Table1 SET Username = '" + textBox2.Text + "', Password = '" + textBox3.Text + "', Site = '" + textBox4.Text + "' WHERE Id='" + int.Parse(textBox1.Text) + "'", con);
+            SqlCommand command = new SqlCommand("UPDATE CRUD_Table3 SET Username = '" + textBox2.Text + "', Password = '" + textBox3.Text + "', Site = '" + textBox4.Text + "' WHERE Id='" + ID_Number + "'", con);
             command.ExecuteNonQuery();
             MessageBox.Show("Upadated");
             con.Close();
@@ -62,10 +63,10 @@ namespace CRUD_CELL
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            if (ID_Number != "")
             {
                 con.Open();
-                SqlCommand command = new SqlCommand("DELETE CRUD_Table1 WHERE Id= '" + int.Parse(textBox1.Text) + "' ", con);
+                SqlCommand command = new SqlCommand("DELETE CRUD_Table3 WHERE Id= '" + ID_Number + "' ", con);
                 command.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Deleted");
@@ -85,7 +86,7 @@ namespace CRUD_CELL
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.CurrentRow.Selected = true;
-            textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells["Id"].Value.ToString();
+            ID_Number = dataGridView1.Rows[e.RowIndex].Cells["Id"].Value.ToString();
             textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells["Username"].Value.ToString();
             textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells["Password"].Value.ToString();
             textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells["Site"].Value.ToString();
