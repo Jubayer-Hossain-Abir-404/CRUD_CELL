@@ -71,3 +71,5 @@ D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\bin\Debug\ru\Microsoft.ReportViewer.Wi
 D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\obj\Debug\CRUD_CELL.rdlc_report.resources
+D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\bin\Debug\Newtonsoft.Json.dll
+D:\VISUAL STUDIO 2019\CRUD_CELL\CRUD_CELL\bin\Debug\Newtonsoft.Json.xml

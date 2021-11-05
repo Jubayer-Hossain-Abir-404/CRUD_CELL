@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,6 +99,19 @@ namespace CRUD_CELL
         {
             rdlc_report RDLC = new rdlc_report();
             RDLC.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM CRUD_Table3", con);
+            SqlDataAdapter sd = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            TextWriter txt = new StreamWriter("D:\\demo.txt");
+            txt.Write(json);
+            txt.Close();
+            MessageBox.Show("Succesfully Saved");
         }
     }
 }
